@@ -19,6 +19,11 @@ Before anything, you will need to have a working ghOSt kernel installed.
 You can install it easily using [my installer](https://github.com/Swire42/ghost-installer).
 Please also run the `pybind` (or `plus`) target, as it installs Python-specific requirements.
 
+### PyBind11
+
+If you installed the kernel another way, don't forget to install PyBind11.
+It can be install with Python's Pip, package "pybind11"
+
 ### ghOSt userspace
 
 After rebooting, please clone or fork [ghost-userspace from Google](https://github.com/google/ghost-userspace)
