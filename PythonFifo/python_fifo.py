@@ -1,6 +1,6 @@
 print("Python is starting.")
 
-from libpyfifo2_bind import *
+from libpython_module import *
 print("Importing bindings: OK")
 
 import queue
