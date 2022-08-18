@@ -22,7 +22,7 @@ Please also run the `pybind` (or `plus`) target, as it installs Python-specific 
 ### PyBind11
 
 If you installed the kernel another way, don't forget to install PyBind11.
-It can be install with Python's Pip, package "pybind11"
+It can be install with Python's Pip, package "pybind11" (`pip3 install pybind11`)
 
 ### ghOSt userspace
 
