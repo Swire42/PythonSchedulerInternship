@@ -11,7 +11,7 @@ namespace py = pybind11;
 #include "lib/ghost.h"
 #include "lib/logging.h"
 #include "lib/scheduler.h"
-#include "bindings/python/interface.hpp"
+#include "python_interface.hpp"
 
 namespace ghost {
   struct TrPB__Agent : public Agent {
