@@ -939,7 +939,7 @@ namespace ghost {
 
 }
 
-PYBIND11_MODULE(libpyfifo2_bind, PB__m) {
+PYBIND11_MODULE(libpython_module, PB__m) {
   py::module PB__ghost = PB__m.def_submodule("ghost"); {
     using namespace ghost;
     py::class_<Agent, TrPB__Agent> PB__Agent(PB__ghost, "Agent"); {
