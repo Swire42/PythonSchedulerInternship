@@ -1,0 +1,17 @@
+Using the C++ library, a scheduler can be implemented by inheriting from BasicDispatchScheduler.
+One also needs an agent, inheriting from Agent.
+
+The core of a Scheduler is Agent::AgentThread().
+This function usually:
+- loops forever
+- consumes messages from the kernel and use Scheduler::DispatchMessage(msg)
+- call the main Scheduling function
+
+The main scheduling function is usually responsible for making transactions, that is telling the kernel what to schedule.
+
+DispatchMessage calls the (overrided) handling function corresponding to the message type.
+This can be Scheduler::TaskNew, for instance.
+
+Most of the logic hence resides in:
+- The main scheduling function.
+- Overrided functions such as TaskNew.

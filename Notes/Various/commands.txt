@@ -1,0 +1,8 @@
+Cleanup mess and start Python scheduler:
+for k in /sys/fs/ghost/enclave_*/ctl; do echo destroy > $k; done; clear && bazel run pyfifo2
+
+Launch many processes and attch them to ghOSt:
+for f in {0..15}; do ./fibo & echo $! >> /sys/fs/ghost/enclave_1/tasks; done
+
+Generate bindings from scratch (this means you will have to redo all the manual edits):
+sudo ~/cppast-pybind/bind/bind --modulename libpyfifo2_bind -I ~/ghost-userspace -I ~/ghost-userspace/bazel-ghost-userspace/external/com_google_absl/ -I /usr/include/python3.8 -I /usr/local/lib/python3.8/dist-packages/pybind11/include --std=c++17 lib/topology.h lib/agent.h lib/base.h lib/channel.h lib/enclave.h lib/ghost.h lib/logging.h lib/scheduler.h bindings/python/interface.hpp > schedulers/pyfifo2/gen.cc

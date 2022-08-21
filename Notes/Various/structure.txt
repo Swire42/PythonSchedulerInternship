@@ -1,0 +1,33 @@
+Per-cpu fifo structure
+
+FullAgent:
+  Launches LocalAgents and handles RPC.
+
+LocalAgent:
+  One loop on a cpu. Runs the scheduler on that cpu
+
+BasicDispatchScheduler:
+  Handles actual scheduling
+  One queue per cpu (stored in cpu state)
+
+Task:
+  Stores info on a Task
+
+
+
+Centralized fifo/sol/edf structure
+
+FullAgent:
+  Launches LocalAgents and handles RPC.
+
+LocalAgent:
+  Sleeps or act as the global agent. The global agent jumps from one cpu to another in case CFS wants to schedule where the current global agent is.
+
+BasicDispatchScheduler:
+  Handles actual scheduling
+  One global queue.
+
+Task:
+  Stores info on a Task
+
+

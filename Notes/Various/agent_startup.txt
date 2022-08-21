@@ -1,0 +1,21 @@
+This is how fifo schedulers launch their agents.
+
+`*` denotes functions specific to one scheduler
+`-` denotes functions from the library
+
+This tree focuses only on the most important parts to avoid exponential size.
+There are a lot of other functions, involved in binding the agents to cpus, handling RPC and other events, finish setting up agents, etc.
+
+The core of the agent is AgentThread, which loops 
+
+* main() : entry point
+  - new AgentProcess<FullFifoAgent, ...> : template arguments to specify which Scheduler to use.
+    - ForkedProcess::ForkedProcess() : There is a fork in this constructor. This class helps a lot in shutting down the scheduler.
+    * FullFifoAgent::FullFifoAgent() : Not much is done, could use a default library implementation.
+      - StartAgentTasks()
+        - for (each cpu)
+          * FullFifoAgent::MakeAgent() : overrided function.
+          - Agent::StartBegin() : StartComplete is called later to finish setting up.
+            - std::thread(&Agent::ThreadBody) : Setup affinity and other things
+              * FifoAgent::AgentThread() : overrided function.
+

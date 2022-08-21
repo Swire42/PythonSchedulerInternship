@@ -1,0 +1,31 @@
+Prise en main sur pc Dell gris
+
+
+Diferents dossiers:
+
+~/ghost-userspace: Swire42/ghost-userspace
+~/google-userspace: google/ghost-userspace
+~/ghost-logs: tchana/ghost
+~/ghost-installer: Swire42/ghost-installer
+~/cppast-pybind: Swire42/cppast-pybind (voir cppast-pybind/bind/pb.*pp pour le generateur)
+~/apps/fibo: petit process qui calcule, changer la taille de la boucle dans fibo.cpp selon les besoins
+
+
+Ou trouver les sources: sur la branche mybind_tests:
+Scheduler python: ghost-userspace/schedulers/pyfifo2/pyfifo2.py
+Bindings: ghost-userspace/schedulers/pyfifo2/gen.cc
+Adapteurs pour python: bindings/python/interface.*pp
+
+
+Comment lancer le scheduler python: (depuis ~/ghost-userspace)
+for k in /sys/fs/ghost/enclave_*/ctl; do echo destroy > $k; done; clear && bazel run pyfifo2
+
+Note: Le debut sert a cleanup les anciennes enclaves, c'est necessaire des qu'un scheduler crash.
+Un bon reflexe quand les choses se passent particulièrement mal: lancer fifo_per_cpu_agent, et verifier que ca se passe bien.
+
+Envoyer des taches vers ghOSt:
+for f in {0..15}; do ~/apps/fibo & echo $! >> /sys/fs/ghost/enclave_1/tasks; done
+
+
+Mettre a jour le kernel:
+Le plus simple, c'est de rm -rf ghost-installer, puis lancer la meme commande que pour installer, en ajoutant "kernel" a la fin (pour ne pas reinstaller bazel ou modifier grub)

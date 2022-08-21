@@ -1,0 +1,4 @@
+- I was not able to make the `make` (default target) approach work on a real machine: Freezing at "Loading initial ramdisk ..."
+- `make deb-pkg` did not work ethier at first. (same)
+- but I ended up noticing a warning issued by the `deb-pkg` target, talking about the name of the folder in which we build the kernel.
+- Changing the folder name to the name in the warning seems to somehow fix the problem.
